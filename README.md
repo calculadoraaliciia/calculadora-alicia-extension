@@ -20,6 +20,7 @@ Extensión gratuita de calculadora educativa que resuelve operaciones matemátic
 Esta extensión es una versión simplificada de la calculadora completa disponible en:
 
 👉 https://calculadoraaliciia.es/
+
 Allí encontrarás módulos adicionales, ejemplos detallados de divisiones con decimales, raíces y potencias, y guías paso a paso pensadas para estudiantes, docentes y familias.
 
 🔒 Privacidad

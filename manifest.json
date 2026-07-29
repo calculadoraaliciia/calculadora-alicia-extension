@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Calculadora Alicia",
+  "version": "1.0.0",
+  "description": "Calculadora rápida con procedimiento paso a paso: suma, resta, multiplicación y división. Basada en calculadoraaliciia.es",
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icons/icon-48.png",
+      "96": "icons/icon-96.png"
+    },
+    "default_title": "Calculadora Alicia"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "calculadora-alicia@calculadoraaliciia.es",
+      "strict_min_version": "109.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  }
+}

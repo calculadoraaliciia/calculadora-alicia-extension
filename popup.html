@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Calculadora Alicia</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="ca-wrap">
+    <div class="ca-header">
+      <span class="ca-logo">Calculadora Alicia</span>
+      <button id="caLangBtn" class="ca-lang-btn" type="button">EN</button>
+    </div>
+
+    <div class="ca-tabs" id="caTabs">
+      <button class="ca-tab active" data-panel="basica">Básica</button>
+      <button class="ca-tab" data-panel="pct">%</button>
+      <button class="ca-tab" data-panel="mcm">MCM/MCD</button>
+      <button class="ca-tab" data-panel="sci">Científica</button>
+      <button class="ca-tab" data-panel="alg">Álgebra</button>
+      <button class="ca-tab" data-panel="frac">Fracciones</button>
+      <button class="ca-tab" data-panel="mat">Matrices</button>
+    </div>
+
+    <!-- BÁSICA -->
+    <div class="ca-panel active" id="panel-basica">
+      <div class="ca-display">
+        <div id="caExpr" class="ca-expr">&nbsp;</div>
+        <div id="caVal" class="ca-val">0</div>
+      </div>
+      <div class="ca-keypad" id="caKeypad">
+        <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button><button data-k="÷" class="op">÷</button>
+        <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button data-k="×" class="op">×</button>
+        <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button><button data-k="−" class="op">−</button>
+        <button data-k="0">0</button><button data-k=",">,</button><button data-k="back">⌫</button><button data-k="+" class="op">+</button>
+        <button data-k="rc">RC</button><button data-k="fact">Fact.</button><button data-k="ac" class="wide">AC</button><button data-k="=" class="eq">=</button>
+      </div>
+      <div class="ca-error" id="caError"></div>
+      <div class="ca-steps" id="caSteps"><div class="ca-steps-placeholder">Introduce una operación y pulsa "=".</div></div>
+    </div>
+
+    <!-- PORCENTAJES -->
+    <div class="ca-panel" id="panel-pct">
+      <label class="ca-lbl">Modo</label>
+      <select id="caPctMode" class="ca-input">
+        <option value="of">¿Cuánto es X% de Y?</option>
+        <option value="is">X es ¿qué % de Y?</option>
+        <option value="incr">Aumentar Y en X%</option>
+        <option value="decr">Disminuir Y en X%</option>
+      </select>
+      <label class="ca-lbl">X (porcentaje)</label>
+      <input id="caPctX" class="ca-input" type="text" placeholder="ej. 20">
+      <label class="ca-lbl">Y (número base)</label>
+      <input id="caPctY" class="ca-input" type="text" placeholder="ej. 150">
+      <button id="caPctSolve" class="ca-solve">Calcular</button>
+      <div class="ca-error" id="caPctError"></div>
+      <div class="ca-steps" id="caPctSteps"><div class="ca-steps-placeholder">Elige el modo, introduce X e Y, y pulsa "Calcular".</div></div>
+    </div>
+
+    <!-- MCM/MCD -->
+    <div class="ca-panel" id="panel-mcm">
+      <label class="ca-lbl">Número 1</label>
+      <input id="caMcmA" class="ca-input" type="text" placeholder="ej. 12">
+      <label class="ca-lbl">Número 2</label>
+      <input id="caMcmB" class="ca-input" type="text" placeholder="ej. 18">
+      <button id="caMcmSolve" class="ca-solve">Calcular MCM y MCD</button>
+      <div class="ca-error" id="caMcmError"></div>
+      <div class="ca-steps" id="caMcmSteps"><div class="ca-steps-placeholder">Introduce dos números enteros para ver su factorización, MCD y MCM.</div></div>
+    </div>
+
+    <!-- CIENTÍFICA -->
+    <div class="ca-panel" id="panel-sci">
+      <div class="ca-display">
+        <div id="caSciExpr" class="ca-expr">&nbsp;</div>
+        <div id="caSciVal" class="ca-val">0</div>
+      </div>
+      <div class="ca-keypad ca-keypad-sci" id="caSciKeypad">
+        <button data-k="sin(">sin</button><button data-k="cos(">cos</button><button data-k="tan(">tan</button><button data-k="ac">AC</button>
+        <button data-k="log(">log</button><button data-k="ln(">ln</button><button data-k="sqrt(">√</button><button data-k="back">⌫</button>
+        <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button><button data-k="^" class="op">^</button>
+        <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button data-k="/" class="op">÷</button>
+        <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button><button data-k="*" class="op">×</button>
+        <button data-k="0">0</button><button data-k="π">π</button><button data-k="(">(</button><button data-k=")">)</button>
+        <button data-k="-" class="op wide">−</button><button data-k="+" class="op wide">+</button><button data-k="=" class="eq wide">=</button>
+      </div>
+      <div class="ca-error" id="caSciError"></div>
+    </div>
+
+    <!-- ÁLGEBRA -->
+    <div class="ca-panel" id="panel-alg">
+      <div class="ca-note">Resuelve <strong>ax + b = c</strong></div>
+      <label class="ca-lbl">a</label>
+      <input id="caAlgA" class="ca-input" type="text" placeholder="ej. 2">
+      <label class="ca-lbl">b</label>
+      <input id="caAlgB" class="ca-input" type="text" placeholder="ej. 4">
+      <label class="ca-lbl">c</label>
+      <input id="caAlgC" class="ca-input" type="text" placeholder="ej. 10">
+      <button id="caAlgSolve" class="ca-solve">Despejar x</button>
+      <div class="ca-error" id="caAlgError"></div>
+      <div class="ca-steps" id="caAlgSteps"><div class="ca-steps-placeholder">Introduce a, b y c, y pulsa "Despejar x".</div></div>
+    </div>
+
+    <!-- FRACCIONES -->
+    <div class="ca-panel" id="panel-frac">
+      <label class="ca-lbl">Fracción 1</label>
+      <input id="caFr1" class="ca-input" type="text" placeholder="ej. 3/4">
+      <select id="caFrOp" class="ca-input">
+        <option value="+">+</option>
+        <option value="-">−</option>
+        <option value="*">×</option>
+        <option value="/">÷</option>
+      </select>
+      <label class="ca-lbl">Fracción 2</label>
+      <input id="caFr2" class="ca-input" type="text" placeholder="ej. 1/2">
+      <button id="caFrSolve" class="ca-solve">Calcular</button>
+      <div class="ca-error" id="caFrError"></div>
+      <div class="ca-steps" id="caFrSteps"><div class="ca-steps-placeholder">Escribe cada fracción como numerador/denominador.</div></div>
+    </div>
+
+    <!-- MATRICES -->
+    <div class="ca-panel" id="panel-mat">
+      <div class="ca-note">Matrices 2×2</div>
+      <div class="ca-matrix-grid">
+        <div class="ca-matrix-box">
+          <div class="ca-lbl">Matriz A</div>
+          <div class="ca-matrix-inputs">
+            <input id="caM1a" class="ca-input ca-cell" type="text">
+            <input id="caM1b" class="ca-input ca-cell" type="text">
+            <input id="caM1c" class="ca-input ca-cell" type="text">
+            <input id="caM1d" class="ca-input ca-cell" type="text">
+          </div>
+        </div>
+        <div class="ca-matrix-box">
+          <div class="ca-lbl">Matriz B</div>
+          <div class="ca-matrix-inputs">
+            <input id="caM2a" class="ca-input ca-cell" type="text">
+            <input id="caM2b" class="ca-input ca-cell" type="text">
+            <input id="caM2c" class="ca-input ca-cell" type="text">
+            <input id="caM2d" class="ca-input ca-cell" type="text">
+          </div>
+        </div>
+      </div>
+      <div class="ca-btn-row">
+        <button id="caMatAdd" class="ca-solve half">A + B</button>
+        <button id="caMatMul" class="ca-solve half">A × B</button>
+      </div>
+      <div class="ca-error" id="caMatError"></div>
+      <div class="ca-steps" id="caMatSteps"><div class="ca-steps-placeholder">Completa ambas matrices y elige una operación.</div></div>
+    </div>
+
+    <a id="caFullLink" class="ca-cta" href="https://calculadoraaliciia.es/" target="_blank" rel="noopener">
+      Ver calculadora completa en la web →
+    </a>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
